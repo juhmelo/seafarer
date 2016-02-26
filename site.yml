@@ -12,16 +12,3 @@
       pre-tasks:
         - include: tasks/setup.yml
     - role: docker
-  #post_tasks:
-  #  - include: tasks/users.yml
-  #  - include: tasks/nginx.yml
-  #    tags:
-  #      - nginx
-  #  - include: tasks/htsp.yml
-
-  #handlers:
-  #  - name: systemctl daemon-reload
-  #    command: systemctl daemon-reload 
-
-  #  - include: roles/nginx/handlers/main.yml
-  #  - include: roles/tomcat/handlers/main.yml

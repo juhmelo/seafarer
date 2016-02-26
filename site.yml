@@ -2,6 +2,8 @@
   hosts: tls_servers
   sudo: True
   user: root
+  pre_tasks:
+    - include: tasks/setup.yml
   roles:
     - role: letsencrypt
       letsencrypt_webroot_path: /var/www/html
@@ -9,6 +11,4 @@
       letsencrypt_cert_domains:
         - www.example.net
         - example.net
-      pre-tasks:
-        - include: tasks/setup.yml
     - role: docker

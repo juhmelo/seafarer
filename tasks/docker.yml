@@ -1,13 +1,24 @@
 # Postgres database, port mapped to host for access
-- name: Database
+- name: Postgres
   docker:
-    name: db
+    name: postgres
     image: postgres:latest
     state: reloaded
     ports:
       - "5432:5432"
-    volumes:
-      - /var/lib/postgresql:/var/lib/postgresl
+
+- name: seafarer | application container
+  docker:
+    name: "{{application_name}}"
+    image: "{{application_name}}/{{application_name}}"
+    state: reloaded
+    links:
+    - "postgres:postgres"
+    ports:
+    - "8080:8080"
+    - "127.0.0.1:8081:8081/udp"
+    env:
+      SECRET_KEY: "{{secret_key}}"
 
 # Containers are matched either by name (if provided) or by an exact match of
 # the image they were launched with and the command they're running. The module

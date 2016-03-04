@@ -1,0 +1,13 @@
+- name: "{{application_name}} | build dir"
+  file: path=/opt/{{application_name}} state=directory mode=0755
+
+- name: "{{application_name}} | build files"
+  copy: src=files/docker/app/{{item}} dest=/opt/{{application_name}}/{{item}} force=yes
+  with_items:
+    - Dockerfile
+
+- name: check or build image
+  docker_image: >
+    name="{{application_name}}/{{application_name}}"
+    path="/opt/{{application_name}}/"
+    state=build

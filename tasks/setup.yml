@@ -1,2 +1,11 @@
-- name: "Www dir"
+- name: "letsencrypt | www dir"
   file: path=/var/www/html state=directory mode=0755
+
+- name: "apt | ensure apt cache is up to date"
+  apt: update_cache=yes
+
+- name: "postgres | psql-cli dependencies"
+  apt: name={{item}}
+  with_items:
+    - libpq-dev
+    - python-dev

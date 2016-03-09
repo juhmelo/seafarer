@@ -1,0 +1,5 @@
+FROM java:latest
+VOLUME ["/var/{{application_name}}", "/var/log/{{application_name}}"]
+EXPOSE 8080
+WORKDIR /var/{{application_name}}
+CMD ["java", "-jar", "app.jar"]

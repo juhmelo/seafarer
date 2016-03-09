@@ -7,7 +7,7 @@
     ports:
       - "5432:5432"
 
-- name: seafarer | application container
+- name: app | application container
   docker:
     name: "{{application_name}}"
     image: "{{application_name}}/{{application_name}}"
